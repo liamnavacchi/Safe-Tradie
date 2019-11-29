@@ -1,0 +1,83 @@
+# Our Welcome Screen
+---
+mandatory: True
+question: Welcome to SafeTradie
+subquestion: |
+  SafeTradie lets you report on your safety compliance.
+  By asking you a just few questions we can make sure you
+  are all safe to begin work. This aims to be quick, easy
+  and not to be a pain the backside!
+  
+  DISCLAIMER: SafeTradie is not a substitute for genuine 
+  legal advice. SafeTradie is a service to provide reporting
+  on compliance with occupational health and safety 
+  criteria. 
+  
+  If you continue you accept these terms
+buttons:
+  - "I accept and wish to continue": continue
+  - "I do not accept": exit
+---
+---
+#this question asks for the apprentices details.
+mandatory: True
+question: Personal Details
+subquestion: |
+  Please fill out your details in the fields below.
+fields:
+  - Name: target_variable1
+  - Surname: target_variable2
+  - E-mail: target_variable3
+    datatype: email
+    required: False
+  - Phone number: target_variable4
+    datatype: number
+    required: False
+  - Company: target_variable5
+    required: False
+  - PGE Number: target_variable6
+---
+mandatory: true
+#this question asks the apprentices year level.
+question: Year Level
+subquestion: |
+ What year level are you?
+field: target_variable
+choices:
+  - 1st year
+  - 2nd year
+  - 3rd year
+  - 4th year
+---
+#this question asks how much supervision the apprentice is getting.
+mandatory: true
+question: Supervision Ratio
+subquestion: |
+  How much supervision are you getting?
+field: target_variable
+choices:
+ - Constant Supervision
+ - Significant Supervision
+ - adequate supervision
+ - low supervision
+---
+#this secion asks the user to photo graph themselves with all the
+#necessary safety equipment on their person.
+---
+question: |
+  Please upload a picture of yourself wearing your safety equipment
+  Including: 
+  
+    * safety glasses;
+    * hi visibility clothing;
+    * hearing protection; and
+    * gloves
+fields:
+  - Picture: user_picture
+    datatype: file
+---
+question: |
+  Thankyou for uploading a picture of your safety gear!
+subquestion: |
+  ${ user_picture }
+mandatory: True
