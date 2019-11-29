@@ -1,0 +1,44 @@
+---
+question: Should you consider applying for the NDIS
+subquestion: |
+   According to the information you have provided you are
+   %if MJFconsider_applying == true: 
+   ** eligible**
+   %else: 
+   ** noteligible**
+   endif
+   to consider applying for the NDIS
+---
+code: |
+  if ( MJFage_ok == True and
+       MJFis_citizen == ‘Yes’ and
+       MJFaddress_state == ‘SA’ ):
+    MJFconsider_applying = True
+  else:
+    MJFconsider_applying = False 
+---
+code: |
+  if 18 <= MJFage <= 65:
+    MJFage_ok = True
+  else:
+    MJFage_ok = False
+---
+question: Are you an Australian Citizen?
+fields: 
+ - no label: MJFcitizen
+  datatype: radio
+  choices: 
+   - Yes
+   - No
+---
+question: please enter your address
+fields: 
+ - street number: MJFaddress_street
+ - suburb: MJFaddress_suburb
+ - state: MJFaddress_state
+---
+question: how old are you?
+fields:
+ - no label: MJFage
+  datatype: integer 
+---
