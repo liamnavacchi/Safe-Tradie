@@ -1,0 +1,13 @@
+---
+#this question asks how much supervision the apprentice is getting.
+mandatory: true
+question: Supervision Ratio
+subquestion: |
+  How much supervision are you getting?
+field: target_variable
+choices:
+ - Constant Supervision
+ - Significant Supervision
+ - adequate supervision
+ - low supervision
+---
