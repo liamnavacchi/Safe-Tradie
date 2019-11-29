@@ -1,0 +1,17 @@
+---
+mandatory: True
+question: Disclaimer
+subquestion: |
+  As a condition of my employment I have a duty to provide information that is true and correct. I agree not to falsify any information and to answer all questions to the best of my knowledge. I acknowledge that failure to comply with these requirements may have consequences for my employment.
+
+  If you have any questions before proceeding, please speak to your supervisor or contact head office on 8340 8000.
+Buttons: 
+  - I Agree with the above statement: Disclaimeraccept
+---
+question: Apprentice?
+Fields:
+  Are you an electrical apprentice about to begin work on a jobsite?
+choices:
+    - Yes: Apprenticestatus
+    - No: exit
+---
