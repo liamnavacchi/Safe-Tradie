@@ -1,0 +1,18 @@
+---
+#this question asks for the apprentices details.
+mandatory: True
+question: Personal Details
+subquestion: |
+  Please fill out your details in the fields below.
+fields:
+  - Name: name_variable
+  - Surname: surname_variable
+  - E-mail: email_variable
+    datatype: email
+    required: False
+  - Phone number: phone_variable
+    datatype: number
+    required: False
+  - Company: company_variable
+    required: False
+---
