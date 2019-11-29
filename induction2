@@ -1,0 +1,38 @@
+---
+mandatory: True
+question: jobsite type
+subquestion: |
+  what type of job site are you working on?
+field: jobsite_type
+dropdown:
+      - Domestic
+      - Commercial
+      - Industrial
+      - Other
+---
+question: |
+  Please provide the following information.
+fields:
+  - note: Check which apply.
+  - Attended induction: attend_induc
+    datatype: yesno
+  - Given key Safety Information: safeT_info
+    datatype: yesno
+  - Neither: given_nither
+    datatype: yesno
+    uncheck others:
+      - attend_induc
+      - safeT_info
+mandatory: True
+---
+mandatory: True
+question: Induction Status
+subquestion: |
+  You are 
+  % if attend_induc and safeT_info:
+        **successfully Inducted**
+  % else:
+    **not inducted and need to ensure that you are**
+  %endif
+---
+  
