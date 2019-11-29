@@ -1,0 +1,21 @@
+---
+objects:
+  protagonist: Individual
+  antagonist: Individual
+  villain: PartyList
+---
+mandatory: True
+code: |
+  protagonist.name.first = "Harry"
+  protagonist.name.last = "Potter"
+  antagonist.name.first = "Tom"
+  antagonist.name.last = "Riddle"
+  villain.auto_gather = False
+---
+question: Who are the villains, if any?
+fields:
+  no label: villain
+  datatype: object_checkboxes
+  choices:
+    - protagonist
+    - antagonist
