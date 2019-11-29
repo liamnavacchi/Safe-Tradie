@@ -1,0 +1,9 @@
+---
+#This question is for eligibility.
+mandatory: true
+question: Apprentice?
+subquestion: Are you an apprentice about to commence work on the jobsite?
+
+buttons:
+- I agree: continue
+---
