@@ -1,0 +1,35 @@
+---
+mandatory: True
+question: Age eligibility
+subquestion: |
+  You entered your age as **${ LJNage_ok }**
+  
+  You are
+  % if LJNage_ok:
+   **between 18 and 65**.
+  % else:
+    **not between 18 and 65**.
+  % endif
+  
+  We have determined that you are
+  % if LJNage_ok:
+    **eligible**.
+  % else:
+    **not eligible**.
+  %endif
+buttons:
+  - Exit: exit
+  - Restart: restart
+---
+code: |
+  if ( (LJNage >= 18) and
+     (LJNage < 65) ):
+    LJNage_ok = True
+  else:
+    LJNage_ok = False
+---
+question: What is your age?
+fields:
+  - no label: LJNage
+    datatype: integer
+---
