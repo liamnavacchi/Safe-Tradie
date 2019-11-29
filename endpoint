@@ -1,0 +1,25 @@
+#This is the end result of where we want to go.
+# here will be our final determination of how the report has gone.
+---
+event: endpoint ['Safety Status']
+question: conclusion of report
+subquestion: |
+  Thankyou for completing your survey. 
+  Our system shows that you are
+  
+  % if safety_status == compliant:
+    **All good and ready to start work**.
+  % else:
+    **you are not ready to start work**.
+  % endif
+  
+  Thankyou for using SafeTradie.
+  
+  You be safe now.
+buttons:
+  restart: restart
+  exit: exit
+---
+code: |
+  safety_status == compliant
+---
