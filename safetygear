@@ -1,0 +1,28 @@
+#this section asks the apprentice if they have all their safety
+#equipment including, glasses, hi vis, hardhat etc.
+---
+mandatory: True
+question: Safety Equipment
+subquestion: |
+  Based on your answers you require the following safety equipment
+  ${required_gear}
+  Your safety status is ${safeT_status}
+---
+code: |
+---
+Initial: True
+question: |
+  What type of safety gear do you have?
+field: safet_gear
+choices:
+  - Hardhat
+  - Gloves
+  - Hearing Protection
+  - Hi Vis clothing
+  - Safety Glasses
+---
+question: |
+  Please inform us what safety equipment you require
+fields:
+  - I need: required_gear
+    datatype: area
