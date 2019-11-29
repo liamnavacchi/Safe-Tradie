@@ -1,0 +1,56 @@
+#email function test
+---
+#this question asks for the apprentices details.
+mandatory: True
+question: Personal Details
+subquestion: |
+  Please fill out your details in the fields below.
+fields:
+  - Name: recipient.name.first
+  - Surname: recipient.name.last
+  - E-mail: recipient.email
+    datatype: email
+    required: False
+  - Phone number: phone_variable
+    datatype: number
+    required: False
+  - Company: company_variable
+    required: False
+  - Supervisors Email: supervisor.email
+    datatype: email
+    required: False
+    default: nava0023@flinders.edu.au
+---
+objects:
+  - recipient: Individual
+  - supervisor: Individual
+---
+mandatory: true
+question: |
+  E-mail test
+subquestion: |
+  % if intro_provided and email_sent_ok:
+  The e-mail was sent successfully.
+  % else:
+  There was a problem sending the e-mail.
+  % endif
+---
+question: |
+  E-mail test
+subquestion: |
+  This interview will send you an e-mail detailing a copy of your report.
+  A copy will also be sent to your supervisor.
+field: intro_provided
+---
+code: |
+  email_sent_ok = send_email(to=recipient, cc=supervisor, template=notification)
+---
+template: notification
+subject: |
+  Greetings, ${ recipient }!
+content: |
+  This is an e-mail sent from the **SafeTradie** application.
+  
+  You be safe now!
+  
+  Have a nice day!
