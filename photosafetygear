@@ -1,0 +1,20 @@
+#this secion asks the user to photo graph themselves with all the
+#necessary safety equipment on their person.
+---
+question: |
+  Please upload a picture of yourself wearing your safety equipment
+  Including: 
+  
+    * safety glasses;
+    * hi visibility clothing;
+    * hearing protection; and
+    * gloves
+fields:
+  - Picture: user_picture
+    datatype: file
+---
+question: |
+  Thankyou for uploading a picture of your safety gear!
+subquestion: |
+  ${ user_picture }
+mandatory: True
