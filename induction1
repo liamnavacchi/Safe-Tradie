@@ -1,0 +1,29 @@
+#This section assesses the mandatory induction criteria
+---
+mandatory: True
+question: Induction
+subquestion: | 
+  The next section asks you to briefly describe what steps were
+  taken to induct you onto the job site.
+  
+  Inductions are a requirement before commencing work onsite.
+  Please complete your answer.
+buttons:
+    - continue: continue
+---
+question: |
+  What date were you inducted?
+fields:
+  - induction date: target_variable
+    datatype: date
+---
+mandatory: True
+question: |
+  How were you inducted to site?.
+fields:
+  - Induction description: target_variable
+    help: |
+      This can be a brief description of the induction process
+      meeting, saftey demo etc
+    datatype: area
+---
