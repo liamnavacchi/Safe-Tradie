@@ -1,0 +1,20 @@
+# Our Welcome Screen
+---
+mandatory: True
+question: Welcome to SafeTradie
+subquestion: |
+  SafeTradie lets you report on your safety compliance.
+  By asking you a just few questions we can make sure you
+  are all safe to begin work. This aims to be quick, easy
+  and not to be a pain the backside!
+  
+  DISCLAIMER: SafeTradie is not a substitute for genuine 
+  legal advice. SafeTradie is a service to provide reporting
+  on compliance with occupational health and safety 
+  criteria. 
+  
+  If you continue you accept these terms
+buttons:
+  - "I accept and wish to continue": continue
+  - "I do not accept": exit
+---
