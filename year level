@@ -1,0 +1,13 @@
+---
+mandatory: true
+#this question asks the apprentices year level.
+question: Year Level
+subquestion: |
+ What year level are you?
+field: target_variable
+choices:
+  - 1st year
+  - 2nd year
+  - 3rd year
+  - 4th year
+---
