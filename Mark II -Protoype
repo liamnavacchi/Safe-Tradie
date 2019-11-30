@@ -1,0 +1,260 @@
+# Full script of application
+---
+# Our Welcome Screen
+---
+mandatory: True
+question: Welcome to SafeTradie
+subquestion: |
+  SafeTradie lets you report on your safety compliance.
+  By asking you a just few questions we can make sure you
+  are all safe to begin work. This aims to be quick, easy
+  and not to be a pain the backside!
+  
+  DISCLAIMER: SafeTradie is not a substitute for genuine 
+  legal advice. SafeTradie is a service to provide reporting
+  on compliance with occupational health and safety 
+  criteria. 
+  
+  If you continue you accept these terms
+buttons: 
+  - "I accept the above terms": continue
+  - I do not accept: exit
+---
+---
+mandatory: True
+question: Disclaimer
+subquestion: |
+  As a condition of my employment I have a duty to provide information that is true and correct. I agree not to falsify any information and to answer all questions to the best of my knowledge. I acknowledge that failure to comply with these requirements may have consequences for my employment.
+
+  If you have any questions before proceeding, please speak to your supervisor or contact head office on 8340 8000.
+Buttons: 
+  - I Agree with the above statement: continue
+---
+question: Apprentice?
+subquestion: |
+  Are you an electrical apprentice about to begin work on a jobsite?
+yesno: apprentice_eligible
+---
+#email function test
+---
+#this question asks for the apprentices details.
+mandatory: True
+question: Personal Details
+subquestion: |
+  Please fill out your details in the fields below.
+fields:
+  - Name: recipient.name.first
+  - Surname: recipient.name.last
+  - E-mail: recipient.email
+    datatype: email
+    required: False
+  - Phone number: phone_variable
+    datatype: number
+    required: False
+  - Company: company_variable
+    required: False
+  - Supervisors Email: supervisor.email
+    datatype: email
+    required: False
+    default: nava0023@flinders.edu.au
+---
+mandatory: True
+question: jobsite type
+subquestion: |
+  What type of job site are you working on?
+field: jobsite_type
+dropdown:
+      - Domestic
+      - Commercial
+      - Industrial
+      - Other
+---
+question: |
+  Please provide the following information.
+fields:
+  - note: Check which apply.
+  - Attended induction: attend_induc
+    datatype: yesno
+  - Given key Safety Information: safeT_info
+    datatype: yesno
+  - Neither: given_nither
+    datatype: yesno
+    uncheck others:
+      - attend_induc
+      - safeT_info
+mandatory: True
+---
+mandatory: True
+question: Induction Status
+subquestion: |
+  You are 
+  % if attend_induc and safeT_info:
+        **successfully Inducted**
+  % else:
+    **not inducted and need to ensure that you are**
+  %endif
+buttons: 
+  - continue: continue
+---
+objects:
+  - Supervision_data_table: DADict
+---
+variable name: Supervision_data_table
+data:
+  first year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Not Compliant
+      low: Not Compliant
+  second year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Not Compliant
+      low: Not Compliant
+  third year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Compliant
+      low: Not Compliant
+  fourth year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Compliant
+      low: Compliant
+---
+mandatory: true
+#this question asks the apprentices year level.
+question: Year Level
+subquestion: |
+ What year level are you?
+field: year_level
+choices:
+  - 1st year: first year
+  - 2nd year: second year
+  - 3rd year: third year
+  - 4th year: fourth year
+---
+#this question asks how much supervision the apprentice is getting.
+mandatory: true
+question: Supervision Ratio
+subquestion: |
+  How much supervision are you getting?
+field: supervision_level
+choices:
+ - Constant Supervision: constant
+ - Regular Supervision: regular
+ - Adequate supervision: adequate 
+ - Low supervision: low 
+---
+code: |
+  supervision_status = Supervision_data_table[year_level][supervision_level]
+---
+#this section asks if they need any safety equipment
+Mandatory: True
+question: Safety Equipment
+fields:
+  - "Select the equipment you require": 'safety_gear'
+    datatype: checkboxes
+    choices: 
+      - hardhat
+      - safety glasses
+      - gloves
+      - hi visibility clothing
+      - steel caps
+      - hearing protection
+      - dust mask
+  - "Do you need anything else?": other_gear
+    default: N/A
+---
+question: |
+  Thankyou for your answer.
+buttons:
+  - continue: continue
+---
+objects:
+  - recipient: Individual
+  - supervisor: Individual
+---
+mandatory: True
+question: |
+  E-mail test
+subquestion: |
+  % if intro_provided and email_sent_ok:
+  The e-mail was sent successfully.
+  % else:
+  There was a problem sending the e-mail.
+  % endif
+---
+question: |
+  E-mail test
+subquestion: |
+  This interview will send you an e-mail detailing a copy of your report.
+  A copy will also be sent to your supervisor.
+field: intro_provided
+---
+code: |
+  email_sent_ok = send_email(to=recipient, cc=supervisor, template=notification)
+---
+template: notification
+subject: |
+  Greetings, ${ recipient }!
+content: |
+  This is an e-mail sent from the **SafeTradie** application.
+  
+  And also Liam just showing off.
+  
+  Apprentice Details | 
+  
+  -------|---------
+  
+  First Name  | ${recipient.name.first}
+  
+  Surname  | ${recipient.name.last}
+  
+  Email  | ${recipient.email}
+  
+  Phone  | ${phone_variable}
+  
+  Host Company  | ${company_variable}
+  
+  Based on your responses
+  
+  Your supervision status is **${supervision_status}** because
+  
+  You are a  **${year_level}** apprentice and;
+  
+  Your supervision level is  **${supervision_level}**.
+  
+    % if safety_gear['hardhat']:
+  You need a hardhat.
+  % endif
+  
+  % if safety_gear['safety glasses']:
+  You need safety glasses.
+  % endif
+  
+  % if safety_gear['gloves']:
+  You need gloves.
+  % endif
+  
+   % if safety_gear['hi visibility clothing']:
+   You need some Hi Vis Clothing.
+   % endif
+   
+   % if safety_gear['steel caps']:
+   You need steel caps.
+   % endif
+   
+   % if safety_gear['hearing protection']:
+   You need hearing protection.
+   % endif
+   
+   % if safety_gear['dust mask']:
+   You need a dust mask.
+   % endif
+   
+   Anything else you need? ${ other_gear }.
+  
+  You be safe now!
+  
+  Have a nice day!
