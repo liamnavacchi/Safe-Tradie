@@ -1,0 +1,65 @@
+---
+objects:
+  - Supervision_data_table: DADict
+---
+variable name: Supervision_data_table
+data:
+  first year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Not Compliant
+      low: Not Compliant
+      second year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Not Compliant
+      low: Not Compliant
+      third year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Compliant
+      low: Not Compliant
+      fourth year:
+      constant: Compliant
+      regular: Compliant
+      adequate: Compliant
+      low: Compliant
+---
+mandatory: true
+#this question asks the apprentices year level.
+question: Year Level
+subquestion: |
+ What year level are you?
+field: year_level
+choices:
+  - 1st year: first year
+  - 2nd year: second year
+  - 3rd year: third year
+  - 4th year: fourth year
+---
+#this question asks how much supervision the apprentice is getting.
+mandatory: true
+question: Supervision Ratio
+subquestion: |
+  How much supervision are you getting?
+field: supervision_level
+choices:
+ - Constant Supervision: constant
+ - Regular Supervision: regular
+ - Adequate supervision: adequate 
+ - Low supervision: low 
+---
+code: |
+  supervision_status = Supervision_data_table[year_level][supervision_level]
+---
+mandatory: True
+Question: Your Supervision Status
+subquestion: |
+  Based on your responses
+  
+  Your supervision status is **${supervision_status}** because
+  
+  You are a  **${year_level}** apprentice and;
+  
+  Your supervision level is  **${supervision_level}**.
+---
